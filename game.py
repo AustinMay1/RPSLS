@@ -1,9 +1,11 @@
 from human import Human
+from ai import Ai
 
 
 class Game:
     def __init__(self):
         self.user = Human()
+        self.opponent
 
     def run_game(self):
         self.display_rules()
@@ -16,7 +18,11 @@ class Game:
         print('')
 
     def is_opponent_human_or_ai(self):
-        pass
+        opp_type = input('Do you want to play multiplayer? y/n')
+        if opp_type == 'n':
+            self.opponent = Ai()
+        else:
+            self.opponent = Human()
 
     def play_round(self):
         pass
