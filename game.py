@@ -1,9 +1,19 @@
+from human import Human
+
+
 class Game:
     def __init__(self):
-        pass
+        self.user = Human()
+
+    def run_game(self):
+        self.display_rules()
+        self.is_opponent_human_or_ai()
+        self.play_round()
+        self.display_game_winner()
 
     def display_rules(self):
-        pass
+        print('Welcome to Rock, Paper, Scissors, Lizard, Spock!')
+        print('')
 
     def is_opponent_human_or_ai(self):
         pass
