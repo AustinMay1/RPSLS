@@ -4,5 +4,5 @@ class Player:
         self.gestures = ["Rock", "Scissors", "Paper", "Lizard", "Spock"]
         self.name = name
 
-    def gestures (self):
+    def get_gestures (self):
         pass
