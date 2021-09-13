@@ -7,7 +7,6 @@ class Human(Player):
 
     def get_name(self):
         self.name = str(input("Please enter a name for the player: "))
-        print(f"Player: {self.name}")
 
     def get_gesture(self):
         selection = str(

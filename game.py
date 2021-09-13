@@ -26,10 +26,10 @@ class Game:
             self.opponent = Ai()
 
     def get_names(self):
-        user_name = self.user.get_name()
-        print(user_name)
-        opp_name = self.opponent.get_name()
-        print(opp_name)
+        self.user.get_name()
+        print(self.user.name)
+        self.opponent.get_name()
+        print(self.opponent.name)
 
     def start_round(self):
         while (self.user.score < 2 and self.opponent.score < 2):
@@ -124,6 +124,6 @@ class Game:
 
     def validate(self, user_input, user):
         formatted_input = user_input.lower
-        for gesture in user.gesture:
+        for gesture in user.gestures:
             if formatted_input == gesture:
                 return formatted_input
