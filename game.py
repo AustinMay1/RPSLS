@@ -18,7 +18,7 @@ class Game:
         print('')
 
     def is_opponent_human_or_ai(self):
-        opp_type = input('Do you want to play multiplayer? y/n')
+        opp_type = input('Do you want to play multiplayer? y/n: ')
         if opp_type == 'n':
             self.opponent = Ai()
         else:
