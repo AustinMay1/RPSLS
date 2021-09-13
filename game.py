@@ -19,12 +19,10 @@ class Game:
         print('')
 
     def is_opponent_human_or_ai(self):
-        opp_type = input('Do you want to play multiplayer? y/n: ')
-        if opp_type == 'n':
-            self.opponent = Ai()
-        else:
-            self.opponent = Human()
-    
+        opp_type = str(
+            input('Do you want to play multiplayer? y/n: ')).lower
+        return opp_type
+
     def get_names(self):
         user_name = self.user.get_name()
         print(user_name)
@@ -83,10 +81,9 @@ class Game:
             self.opponent.score += 1
         else:
             pass
-        
+
         self.display_round_winner(user_score, opp_score)
         self.print_score()
-        
 
     def user_select(self):
         turn = self.user.get_gesture()
@@ -107,8 +104,7 @@ class Game:
     def print_score(self):
         print(f'{self.user.name} has :{self.user.score} points.')
         print(f'{self.opponent.name} has :{self.opponent.score} points.')
-        
-             
+
     def display_game_winner(self):
        
         if self.user.score > self.opponent.score:
@@ -119,5 +115,8 @@ class Game:
         self.opponent.score = 0
         self.start_round()
 
-
-    
+    def validate(self, user_input, user):
+        formatted_input = user_input.lower
+        for gesture in user.gestures:
+            if formatted_input == gesture:
+                return formatted_input
