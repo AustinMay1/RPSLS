@@ -37,6 +37,7 @@ class Game:
             opp_select = self.opponent_select()
             print(user_select, opp_select)
             self.play_round(user_select, opp_select)
+            self.display_game_winner()
         play_again = input('Do you want to play again? y/n')
         if play_again == 'y':
             self.user.score = 0
@@ -103,15 +104,13 @@ class Game:
         return turn
 
     def display_round_winner(self, user_score, opp_score):
-        
+
         if self.user.score == user_score and self.opponent.score == opp_score:
             print('Tie')
         elif user_score < self.user.score:
             print(self.user.name, " Wins!")
         else:
             print(self.opponent.name, " Wins!")
-        
-        
 
     def print_score(self):
         print(f'{self.user.name} has :{self.user.score} points.')
@@ -126,9 +125,6 @@ class Game:
             print(self.opponent.name, " Wins this round")
             self.opponent.round += 1
             print(self.opponent.name, 'Round Score: ', self.opponent.round)
-        self.user.score = 0
-        self.opponent.score = 0
-        self.start_round()
 
     def validate(self, user_input, user):
         formatted_input = user_input.lower
