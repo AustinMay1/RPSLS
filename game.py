@@ -31,7 +31,7 @@ class Game:
         print(opp_name)
         self.user_select()
         self.opponent_select()
-        
+
 
     def display_gestures(self):
         turn = self.user.get_gesture()
@@ -59,3 +59,5 @@ class Game:
 
     def display_game_winner(self):
         pass
+
+    
