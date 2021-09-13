@@ -12,7 +12,5 @@ class Ai(Player):
         selection = random.choice(self.gestures)
         return selection
 
-    def get_name (self):
-        
+    def get_name(self):
         return self.name
-
