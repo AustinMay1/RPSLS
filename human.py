@@ -12,3 +12,5 @@ class Human(Player):
         selection = str(
             input("What is your choice (rock, paper, scissors, lizard, spock): "))
         return selection
+        
+    
