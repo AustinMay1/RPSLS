@@ -120,8 +120,6 @@ class Game:
         else:
             print(self.opponent.name, " wins the game")
 
-    def validate(self, user_input, user):
-        formatted_input = user_input.lower
-        for gesture in user.gesture:
-            if formatted_input == gesture:
-                return formatted_input
+    
+
+
