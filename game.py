@@ -10,6 +10,7 @@ class Game:
     def run_game(self):
         self.display_rules()
         self.is_opponent_human_or_ai()
+        self.get_names()
         self.start_round()
         self.display_game_winner()
 
@@ -23,12 +24,14 @@ class Game:
             self.opponent = Ai()
         else:
             self.opponent = Human()
-
-    def start_round(self):
+    
+    def get_names(self):
         user_name = self.user.get_name()
         print(user_name)
         opp_name = self.opponent.get_name()
         print(opp_name)
+
+    def start_round(self):
         while (self.user.score < 2 and self.opponent.score < 2):
             user_select = self.user_select()
             opp_select = self.opponent_select()
@@ -36,6 +39,8 @@ class Game:
             self.play_round(user_select, opp_select)
 
     def play_round(self, user_select, opponent_select):
+        user_score = self.user.score
+        opp_score = self.opponent.score
         if user_select == 'rock' and opponent_select == 'scissors':
             self.user.score += 1
         elif user_select == 'scissors' and opponent_select == 'rock':
@@ -77,8 +82,11 @@ class Game:
         elif user_select == 'rock' and opponent_select == 'spock':
             self.opponent.score += 1
         else:
-            print('You tied!')
+            pass
+        
+        self.display_round_winner(user_score, opp_score)
         self.print_score()
+        
 
     def user_select(self):
         turn = self.user.get_gesture()
@@ -88,14 +96,28 @@ class Game:
         turn = self.opponent.get_gesture()
         return turn
 
-    def display_round_winner(self):
-        pass
+    def display_round_winner(self, user_score, opp_score):
+
+        if self.user.score == user_score and self.opponent.score == opp_score:
+            print('Tie')
+        elif user_score < self.user.score:
+            print(self.user.name, " Wins!")
+        else:
+            print(self.opponent.name, " Wins!")
 
     def print_score(self):
         print(f'{self.user.name} has :{self.user.score} points.')
         print(f'{self.opponent.name} has :{self.opponent.score} points.')
-
+        
+             
     def display_game_winner(self):
-        pass
+        if self.user.score > self.opponent.score:
+            print(self.user.name, " Wins this round")
+        else:
+            print(self.opponent.name, " Wins this round")
+        self.user.score = 0
+        self.opponent.score = 0
+        self.start_round()
+
 
     
