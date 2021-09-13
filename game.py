@@ -92,8 +92,6 @@ class Game:
         else:
             pass
 
-        self.display_round_winner(user_score, opp_score)
-        self.print_score()
 
     def user_select(self):
         turn = self.user.get_gesture()
