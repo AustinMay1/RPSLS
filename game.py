@@ -97,7 +97,6 @@ class Game:
         return turn
 
     def display_round_winner(self, user_score, opp_score):
-
         if self.user.score == user_score and self.opponent.score == opp_score:
             print('Tie')
         elif user_score < self.user.score:
@@ -111,6 +110,7 @@ class Game:
         
              
     def display_game_winner(self):
+       
         if self.user.score > self.opponent.score:
             print(self.user.name, " Wins this round")
         else:
