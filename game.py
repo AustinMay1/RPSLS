@@ -27,15 +27,16 @@ class Game:
 
     def get_names(self):
         self.user.get_name()
-        print(self.user.name)
+        print(f'Player 1\'s name is {self.user.name}')
         self.opponent.get_name()
-        print(self.opponent.name)
+        print(f'Player 2\'s name is {self.opponent.name}')
 
     def start_round(self):
         while (self.user.score < 2 and self.opponent.score < 2):
             user_select = self.user_select()
             opp_select = self.opponent_select()
-            print(user_select, opp_select)
+            print(f'{self.user.name} selected {user_select}')
+            print(f'{self.opponent.name} selected {opp_select}')
             self.play_round(user_select, opp_select)
         self.display_game_winner()
         play_again = input('Do you want to play again? y/n: ')
@@ -96,37 +97,42 @@ class Game:
         self.display_round_winner(user_score, opp_score)
 
     def user_select(self):
-        turn = self.user.get_gesture()
-        return turn
+        while(True):
+            turn = self.user.get_gesture()
+            if self.validate(turn, self.user) == True:
+                return turn
+            else:
+                print('Invalid input, try again.')
 
     def opponent_select(self):
-        turn = self.opponent.get_gesture()
-        return turn
+        while(True):
+            turn = self.opponent.get_gesture()
+            if self.validate(turn, self.opponent) == True:
+                return turn
+            else:
+                print('Invalid input, try again.')
 
     def display_round_winner(self, user_score, opp_score):
 
         if self.user.score == user_score and self.opponent.score == opp_score:
-            print('Tie')
+            print('You tied!')
         elif user_score < self.user.score:
-            print(self.user.name, " Wins!")
+            print(self.user.name, " wins!")
         else:
-            print(self.opponent.name, " Wins!")
+            print(self.opponent.name, " wins!")
 
     def print_score(self):
-        print(f'{self.user.name} has :{self.user.score} points.')
-        print(f'{self.opponent.name} has :{self.opponent.score} points.')
+        print(f'{self.user.name} has: {self.user.score} points.')
+        print(f'{self.opponent.name} has: {self.opponent.score} points.')
 
     def display_game_winner(self):
         if self.user.score > self.opponent.score:
-            print(self.user.name, " wins the game")
+            print(self.user.name, " wins the best of three")
         else:
-            print(self.opponent.name, " wins the game")
-
-    
-
+            print(self.opponent.name, " wins the best of three")
 
     def validate(self, user_input, user):
         formatted_input = user_input.lower()
         for gesture in user.gestures:
             if formatted_input == gesture:
-                return formatted_input
+                return True
