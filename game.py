@@ -92,6 +92,8 @@ class Game:
         else:
             pass
 
+        self.print_score()
+        self.display_round_winner(user_score, opp_score)
 
     def user_select(self):
         turn = self.user.get_gesture()
@@ -121,7 +123,7 @@ class Game:
             print(self.opponent.name, " wins the game")
 
     def validate(self, user_input, user):
-        formatted_input = user_input.lower
+        formatted_input = user_input.lower()
         for gesture in user.gestures:
             if formatted_input == gesture:
                 return formatted_input
