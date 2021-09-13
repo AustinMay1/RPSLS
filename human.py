@@ -10,7 +10,5 @@ class Human(Player):
 
     def get_gesture(self):
         selection = str(
-            input("What is your choice (rock, paper, scissors, lizard, spock): "))
+            input("What is your choice? (rock, paper, scissors, lizard, spock): "))
         return selection
-        
-    

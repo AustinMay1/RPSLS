@@ -12,11 +12,21 @@ class Game:
         self.is_opponent_human_or_ai()
         self.get_names()
         self.start_round()
-        self.display_game_winner()
 
     def display_rules(self):
         print('Welcome to Rock, Paper, Scissors, Lizard, Spock!')
-        print('')
+        print('Play vs AI or a human opponent!')
+        print('Pick one of five gestures against your opponent and compare them. Winner gets a point and the first player to 2 points wins!')
+        print('rock crushes scissors')
+        print('scissors cuts paper')
+        print('paper covers rock')
+        print('rock crushes lizard')
+        print('lizard poisons spock')
+        print('spock smashes scissors')
+        print('scissors decapitates lizard')
+        print('lizard eats paper')
+        print('paper disproves spock')
+        print('spock vaporizes rock')
 
     def is_opponent_human_or_ai(self):
         opp_type = input('Do you want to play multiplayer? y/n: ')
@@ -33,10 +43,10 @@ class Game:
 
     def start_round(self):
         while (self.user.score < 2 and self.opponent.score < 2):
-            user_select = self.user_select()
-            opp_select = self.opponent_select()
-            print(f'{self.user.name} selected {user_select}')
-            print(f'{self.opponent.name} selected {opp_select}')
+            user_select = self.user_select().lower()
+            opp_select = self.opponent_select().lower()
+            print(f'{self.user.name} selected {user_select}.')
+            print(f'{self.opponent.name} selected {opp_select}.')
             self.play_round(user_select, opp_select)
         self.display_game_winner()
         play_again = input('Do you want to play again? y/n: ')
@@ -44,8 +54,6 @@ class Game:
             self.user.score = 0
             self.opponent.score = 0
             self.start_round()
-        else:
-            return
 
     def play_round(self, user_select, opponent_select):
         user_score = self.user.score
@@ -99,7 +107,7 @@ class Game:
     def user_select(self):
         while(True):
             turn = self.user.get_gesture()
-            if self.validate(turn, self.user) == True:
+            if self.validate_gesture(turn, self.user) == True:
                 return turn
             else:
                 print('Invalid input, try again.')
@@ -107,7 +115,7 @@ class Game:
     def opponent_select(self):
         while(True):
             turn = self.opponent.get_gesture()
-            if self.validate(turn, self.opponent) == True:
+            if self.validate_gesture(turn, self.opponent) == True:
                 return turn
             else:
                 print('Invalid input, try again.')
@@ -127,11 +135,11 @@ class Game:
 
     def display_game_winner(self):
         if self.user.score > self.opponent.score:
-            print(self.user.name, " wins the best of three")
+            print(self.user.name, " wins the best of three!")
         else:
-            print(self.opponent.name, " wins the best of three")
+            print(self.opponent.name, " wins the best of three!")
 
-    def validate(self, user_input, user):
+    def validate_gesture(self, user_input, user):
         formatted_input = user_input.lower()
         for gesture in user.gestures:
             if formatted_input == gesture:
