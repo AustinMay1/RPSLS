@@ -5,7 +5,7 @@ from ai import Ai
 class Game:
     def __init__(self):
         self.user = Human()
-        self.opponent
+        self.opponent = Human()
 
     def run_game(self):
         self.display_rules()
@@ -25,16 +25,31 @@ class Game:
             self.opponent = Human()
 
     def play_round(self):
-        pass
+        user_name = self.user.get_name()
+        print(user_name)
+        opp_name = self.opponent.get_name()
+        print(opp_name)
+        self.user_select()
+        self.opponent_select()
+        
 
     def display_gestures(self):
-        pass
+        turn = self.user.get_gesture()
+        print(turn)
 
     def user_select(self):
-        pass
+        turn = self.user.get_gesture()
+        print(turn)
+        
 
     def opponent_select(self):
-        pass
+        if self.opponent.type == 'ai':
+            opponent_turn = self.opponent.get_gesture()
+            print(opponent_turn)
+        else:
+            opponent_turn = self.opponent.get_gesture()
+            print(opponent_turn)
+
 
     def display_round_winner(self):
         pass

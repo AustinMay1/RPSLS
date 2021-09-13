@@ -3,7 +3,8 @@ from player import Player
 
 class Human(Player):
     def __init__(self):
-        super().__init__(self)
+        super().__init__()
+        self.type = 'human'
 
     def get_name(self):
         self.name = str(input("Please enter a name for the player: "))
