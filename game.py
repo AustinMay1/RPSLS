@@ -19,9 +19,11 @@ class Game:
         print('')
 
     def is_opponent_human_or_ai(self):
-        opp_type = str(
-            input('Do you want to play multiplayer? y/n: ')).lower
-        return opp_type
+        opp_type = input('Do you want to play multiplayer? y/n: ')
+        if opp_type == 'human':
+            self.opponent = Human()
+        else:
+            self.opponent = Ai()
 
     def get_names(self):
         user_name = self.user.get_name()
@@ -35,6 +37,13 @@ class Game:
             opp_select = self.opponent_select()
             print(user_select, opp_select)
             self.play_round(user_select, opp_select)
+        play_again = input('Do you want to play again? y/n')
+        if play_again == 'y':
+            self.user.score = 0
+            self.opponent.score = 0
+            self.start_round()
+        else:
+            return
 
     def play_round(self, user_select, opponent_select):
         user_score = self.user.score
@@ -111,9 +120,6 @@ class Game:
             print(self.user.name, " Wins this round")
         else:
             print(self.opponent.name, " Wins this round")
-        self.user.score = 0
-        self.opponent.score = 0
-        self.start_round()
 
     def validate(self, user_input, user):
         formatted_input = user_input.lower
