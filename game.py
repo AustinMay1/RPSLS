@@ -128,3 +128,4 @@ class Game:
         for gesture in user.gestures:
             if formatted_input == gesture:
                 return formatted_input
+                
